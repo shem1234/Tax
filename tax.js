@@ -10,20 +10,17 @@ document.getElementById("tax_form").addEventListener("submit",function(event){
     let basic_salary =  Number(document.getElementById("basic_salary").value)
     let benefits = Number(document.getElementById("benefits").value)
 
-    let my_gross = ""
     function calculate_gross(basic,benefits){
         return basic + benefits
     }
 
-    my_gross = calculate_gross(basic_salary,benefits)
-    document.getElementById("gross").innerHTML = my_gross
-    console.log(my_gross)
+    let my_gross = calculate_gross(basic_salary,benefits)
+    document.getElementById("gross").innerHTML = my_gross.toFixed(2)
 
     let nhif = ""
     nhif = calculate_nhif(my_gross)
-    document.getElementById("nhif").innerHTML = nhif
-    console.log("NHIF: " + nhif)
-
+    document.getElementById("nhif").innerHTML = nhif.toFixed(2)
+    
     function calculate_nhif(gross){
             if (my_gross <= 5999){
                 nhif = 150
@@ -78,7 +75,7 @@ document.getElementById("tax_form").addEventListener("submit",function(event){
     }
 
     let nssf_contribution = find_nssf(my_gross)
-    document.getElementById("nssf").innerHTML = nssf_contribution
+    document.getElementById("nssf").innerHTML = nssf_contribution.toFixed(2)
     console.log("NSSF: " + nssf_contribution)
 
     function find_nhdf(my_gross){
@@ -89,7 +86,7 @@ document.getElementById("tax_form").addEventListener("submit",function(event){
 
     let nhdf_contribution = ""
     nhdf_contribution = find_nhdf(my_gross)
-    document.getElementById("nhdf").innerHTML = nhdf_contribution
+    document.getElementById("nhdf").innerHTML = nhdf_contribution.toFixed(2)
     console.log("NHDF: " + nhdf_contribution)
 
 
@@ -101,12 +98,12 @@ document.getElementById("tax_form").addEventListener("submit",function(event){
 
     let taxable_income = ""
     taxable_income = find_taxable_income(my_gross,nssf_contribution,nhdf_contribution,nhif)
-    document.getElementById("taxable_income").innerHTML = taxable_income
+    document.getElementById("taxable_income").innerHTML = taxable_income.toFixed(2)
     console.log("Taxable income: " + taxable_income)
     
     let paye = ""
     paye = find_paye(taxable_income)
-    document.getElementById("paye").innerHTML = paye
+    document.getElementById("paye").innerHTML = paye.toFixed(2)
     console.log("PAYE: " + paye)
 
     function find_paye(paye){
@@ -131,7 +128,7 @@ document.getElementById("tax_form").addEventListener("submit",function(event){
 
     let net_salary = ""
     net_salary = find_net_salary(taxable_income,tax)
-    document.getElementById("net_salary").innerHTML = net_salary
+    document.getElementById("net_salary").innerHTML = net_salary.toFixed(2)
 
 
     
